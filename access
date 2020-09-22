@@ -114,3 +114,32 @@ free -k |grep "Mem" |awk '{print($2-$4-$6-$7)/$2*100}'
 RHEL7
 
 free -k |grep "Mem" |awk '{print($2-$4-$6)/$2*100}'
+
+
+
+NW機器
+事象
+1.R1 より、192.168.3.1　の BGP インターフェースダウンを検知。
+2.10分後に、Tunnel1 のダウンを検知
+
+対応
+1.検知メッセージより、neighbor ルータの IP アドレスが 192.168.3.1 である事を確認
+show ip interface brief
+
+2.Tunnel のステータスが「up」している事を確認
+show ip interface brief
+
+3.R0[12]にて再起動が発生していない事を確認
+show version | inc uptimne
+
+4.CPU 負荷の高騰は見受けられない事を確認
+show process cpu history 
+
+5.メモリ負荷の高騰は見受けられない事を確認
+show mem summary
+
+6.neighbor の機器は　XX　である事を確認
+show run | inc 192.168.3.1
+
+7.現状 BGP のステータスは「up」している事を確認
+show logging
