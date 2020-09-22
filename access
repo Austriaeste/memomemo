@@ -143,3 +143,7 @@ show run | inc 192.168.3.1
 
 7.現状 BGP のステータスは「up」している事を確認
 show logging
+
+
+おまけ
+cat /var/log/security
