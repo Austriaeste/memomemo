@@ -74,3 +74,27 @@ Traffic                ServerSide  General
   Total Requests                -       10
   [root@bigip:Active] config#
 
+
+
+CPU
+1.今日の00:00から現在時刻までのCPU使用率の推移を見てみましょう
+
+sar -u
+
+2.どんなcronが格納されているのかを見てみましょう
+
+crontab -l
+
+3.スケジューラを所有しているユーザ名を見てみましょう
+
+ls -al /var/spool/cron/
+
+4.アラート検知時間帯に、バッチ処理が走っていたかを見てみましょう
+
+cat /var/spool/cron/<前項で表示したユーザ名>
+
+5.コマンドの実行結果と、アラートの検知結果を比較し、アラートの発生原因が cron 実行によるものなのかを見てみましょう
+
+cat /var/log/messages | grep "cron failed"
+
+
