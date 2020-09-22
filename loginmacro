@@ -20,3 +20,6 @@ strconcat msg ' /passwd='
 strconcat msg password
  
 connect msg
+
+ログの設定
+https://itsakura.com/teraterm-log
