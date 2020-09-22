@@ -98,3 +98,19 @@ cat /var/spool/cron/<前項で表示したユーザ名>
 cat /var/log/messages | grep "cron failed"
 
 
+メモリ使用率調査
+1.まずはともあれメモリ使用率を見てみましょう
+
+cat /etc/redhat-release
+
+free -k
+
+RHEL6
+
+free -k |grep "Mem" |awk '{print($2-$4-$6-$7)/$2*100}'
+
+もしくは
+
+RHEL7
+
+free -k |grep "Mem" |awk '{print($2-$4-$6)/$2*100}'
